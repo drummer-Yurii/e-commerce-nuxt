@@ -5,7 +5,7 @@
       <v-row dense>
         <v-col md="3">
           <div>
-            <v-text-field prepend-inner-icon="mdi-magnify" outlined clearable placeholder="Search" />
+            <v-text-field v-model="search" prepend-inner-icon="mdi-magnify" outlined clearable placeholder="Search" />
             <v-list subheader color="transparent" v-if="$vuetify.breakpoint.mdAndUp">
               <v-subheader>Categories</v-subheader>
               <v-list-item v-for="(c, i) in categories" :key="`category${i}`" link>
@@ -24,7 +24,7 @@
 
         <v-col md="9">
           <v-row>
-            <template v-for="(p, i) in products">
+            <template v-for="(p, i) in filteredProducts">
               <v-col cols="12" md="6" :key="`product${p.id}-${i}`">
                 <v-card link color="surface" class="el ma-2 mb-5 mr-5">
                   <v-img :src="p.image" height="300">
@@ -84,9 +84,29 @@
         return {
           products: null,
           categories: null,
+          search: null
         }
       },
-  }
+      computed: {
+        filteredProducts() {
+          if (!this.products || !this.search) return this.products;
+          return this.products.filter((p) => {
+            const s = this.search.toLowerCase();
+            const n = p.name.toLowerCase();
+            const price = p.price.toString();
+            const sprice = p.salePrice?.toString() || '';
+            const r = p.ratings.toString();
+
+            return (
+              n.includes(s) ||
+              price.includes(s) ||
+              sprice.includes(s) ||
+              r.includes(s)
+            );
+          });
+        },
+      },
+  };
 </script>
 
 <style>
