@@ -71,6 +71,8 @@
 
       </v-row>
     </v-container>
+    <Footer />
+    <ScrollTop />
   </div>
 </template>
 

@@ -28,7 +28,7 @@
                 <p class="text-md-body-2 mb-7">
                   {{ p.description }}
                 </p>
-                <v-btn depressed color="primary" class="text-capitalize" min-height="40">
+                <v-btn nuxt :to="`/products/${p.id}`" depressed color="primary" class="text-capitalize" min-height="40">
                   Check It Out
                 </v-btn>
               </div>
