@@ -21,6 +21,54 @@
             </v-list>
           </div>
         </v-col>
+
+        <v-col md="9">
+          <v-row>
+            <template v-for="(p, i) in products">
+              <v-col cols="12" md="6" :key="`product${p.id}-${i}`">
+                <v-card link color="surface" class="el ma-2 mb-5 mr-5">
+                  <v-img :src="p.image" height="300">
+                    <template #placeholder>
+                      <v-row
+                        class="fill-height"
+                        justify="center"
+                        align="center"
+                      >
+                        <v-progress-circular
+                          width="2"
+                          size="100"
+                          color="primary"
+                          indeterminate
+                        >
+                        </v-progress-circular>
+                      </v-row>
+                    </template>
+                  </v-img>
+
+                  <v-card-title class="text-md-body-1 font-weight-bold">
+                    {{ p.name }}
+                  </v-card-title>
+                  <v-card-subtitle class="primary--text pb-3">
+                    ${{ p.price }}
+                  </v-card-subtitle>
+                  <v-card-text>
+                    <v-chip
+                      x-small
+                      label
+                      outlined
+                      class="mr-1"
+                      v-for="(t, i) in p.tags"
+                      :key="`prod${p.id}-${i}`"
+                    >
+                      {{ t }}
+                    </v-chip>
+                  </v-card-text>
+                </v-card>
+              </v-col>
+            </template>
+          </v-row>
+        </v-col>
+
       </v-row>
     </v-container>
   </div>
