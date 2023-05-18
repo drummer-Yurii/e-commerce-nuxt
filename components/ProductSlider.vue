@@ -19,7 +19,7 @@
           {{ p.name }}
         </v-card-title>
         <v-card-subtitle class="primary--text pb-3">
-          {{ p.price }}
+          {{ $formatMoney(p.price) }}
         </v-card-subtitle>
         <v-card-text>
           <v-chip x-small label outlined class="mr-1" v-for="(t, i) in p.tags" :key="`prod${p.id}-${i}`">
