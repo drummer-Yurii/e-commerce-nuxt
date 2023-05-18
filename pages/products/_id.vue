@@ -34,7 +34,13 @@
           <p class="mt-5 mb-7">
             {{ product.description }}
           </p>
-          <v-btn min-height="45" min-width="170" class="text-capitalize" color="primary">Add To Cart</v-btn>
+          <v-btn
+            @click="$store.commit('cart/AddToCart', product)"
+            min-height="45" min-width="170"
+            class="text-capitalize" color="primary"
+          >
+            Add To Cart
+          </v-btn>
         </v-col>
       </v-row>
     </v-container>
